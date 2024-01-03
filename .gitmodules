@@ -1,0 +1,12 @@
+[submodule "marker_detector"]
+	path = marker_detector
+	url = git@github.com:nuaa-rm/marker_detector.git
+[submodule "marker_tracker"]
+	path = marker_tracker
+	url = git@github.com:nuaa-rm/marker_tracker.git
+[submodule "hik_camera_driver_ros2"]
+	path = hik_camera_driver_ros2
+	url = git@github.com:nuaa-rm/hik_camera_driver_ros2.git
+[submodule "robot_serial"]
+	path = robot_serial
+	url = git@github.com:nuaa-rm/robot_serial.git
