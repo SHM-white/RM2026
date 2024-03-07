@@ -12,6 +12,7 @@ check_packages(){
     eigen=1
   else
     echo "Not Found!"
+    eigen=0
     need_setup=1
   fi
 
@@ -21,6 +22,7 @@ check_packages(){
     openvino=1
   else
     echo "Not Found!"
+    openvino=0
     need_setup=1
   fi
 
@@ -30,6 +32,7 @@ check_packages(){
     opencv=1
   else
     echo "Not Found!"
+    opencv=0
     need_setup=1
   fi
 
@@ -39,6 +42,7 @@ check_packages(){
     ros=1
   else
     echo "Not Found!"
+    ros=0
     need_setup=1
   fi
 
@@ -48,6 +52,7 @@ check_packages(){
     ceres=1
   else
     echo "Not Found!"
+    ceres=0
     need_setup=1
   fi
 
@@ -57,6 +62,7 @@ check_packages(){
     cv_bridge=1
   else
     echo "Not Found!"
+    cv_bridge=0
     need_setup=1
   fi
 
@@ -66,6 +72,7 @@ check_packages(){
     mvs=1
   else
     echo "Not Found!"
+    mvs=0
     need_setup=1
   fi
 
@@ -79,7 +86,7 @@ install_package(){
   if [ $eigen -eq 0 ]; then
     clear
     echo "Install Eigen..."
-    sudo apt install libeigen3-dev
+    sudo apt install libeigen3-dev -y
   fi
 
   if [ $openvino -eq 0 ]; then
@@ -89,20 +96,22 @@ install_package(){
     sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
     echo "deb https://apt.repos.intel.com/openvino/2023 ubuntu22 main" | sudo tee /etc/apt/sources.list.d/intel-openvino-2023.list
     sudo apt update
-    sudo apt install openvino
+    sudo apt install openvino -y
   fi
 
   if [ $opencv -eq 0 ]; then
     clear
     echo "Install openCV..."
-    sudo apt-get install build-essential python-numpy python3-numpy python-pandas python3-pandas cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff5-dev libdc1394-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev libxvidcore-dev libx264-dev libatlas-base-dev gfortran ffmpeg
-    sudo git clone https://github.com/opencv/opencv.git /usr/local/src/
-    sudo git clone https://github.com/opencv/opencv_contrib.git /usr/local/src/opencv-4.x
+    sudo apt-get install build-essential python3-numpy python3-pandas cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff5-dev libdc1394-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev libxvidcore-dev libx264-dev libatlas-base-dev gfortran ffmpeg -y
+    #git clone git@github.com:opencv/opencv.git /tmp/rm/opencv 
+    sudo mv /tmp/rm/opencv /usr/local/src
+    #git clone git@github.com:opencv/opencv_contrib.git /tmp/rm/opencv_contrib 
+    sudo mv /tmp/rm/opencv_contrib /usr/local/src/opencv
     cd /usr/local/src
-    cd opencv-4.x
+    cd opencv
     mkdir build
     cd build
-    cmake -D CMAKE_INSTALL_PREFIX=/usr/local -D CMAKE_BUILD_TYPE=build -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.x ..
+    cmake -D CMAKE_INSTALL_PREFIX=/usr/local -D CMAKE_BUILD_TYPE=build -D OPENCV_EXTRA_MODULES_PATH=./opencv_contrib/modules ..
     make -j12
     sudo make install
     sudo ln -s /usr/local/include/opencv4/opencv2/ /usr/local/include/
@@ -111,30 +120,31 @@ install_package(){
   if [ $ros -eq 0 ]; then
     clear
     echo "Install Ros2..."
-    sudo apt install software-properties-common
+    sudo apt install software-properties-common -y
     sudo add-apt-repository universe
-    sudo apt update && sudo apt install curl -y
+    sudo apt update
+    sudo apt install curl -y
     sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
     sudo apt update
     sudo apt upgrade
-    sudo apt install ros-humble-desktop
-    sudo apt install ros-dev-tools
+    sudo apt install ros-humble-desktop -y
+    sudo apt install ros-dev-tools -y
   fi
 
   if [ $ceres -eq 0 ]; then
     clear
     echo "Install Ceres..."
-    sudo git clone https://ceres-solver.googlesource.com/ceres-solver /usr/local/src
-    sudo apt-get install libgoogle-glog-dev libgflags-dev
+    sudo -E git clone https://ceres-solver.googlesource.com/ceres-solver /usr/local/src/ceres-solver
+    sudo apt-get install libgoogle-glog-dev libgflags-dev -y
     # Use ATLAS for BLAS & LAPACK
-    sudo apt-get install libatlas-base-dev
+    sudo apt-get install libatlas-base-dev -y
     # SuiteSparse (optional)
-    sudo apt-get install libsuitesparse-dev
+    sudo apt-get install libsuitesparse-dev -y
     cd /usr/local/src/ceres-solver
     mkdir ceres-bin
     cd ceres-bin
-    cmake ../ceres-solver-2.2.0
+    cmake ..
     make -j12
     make test
     # Optionally install Ceres, it can also be exported using CMake which
@@ -146,7 +156,8 @@ install_package(){
   if [ $cv_bridge -eq 0 ]; then
     clear
     echo "Install cv_bridge"
-    sudo git clone https://github.com/ros-perception/vision_opencv.git -b humble /usr/local/src/
+    git clone https://github.com/ros-perception/vision_opencv.git -b humble /tmp/rm/vision_opencv 
+    sudo mv /tmp/rm/vision_opencv /usr/loc al/src
     cd /usr/local/src/vision_opencv/cv_bridge
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/humble ..
@@ -165,9 +176,9 @@ install_package(){
 
     # 判断架构
     if [ "$architecture" == "x86_64" ]; then
-      sudo dpkg -i MVS-2.1.2_x86_64_*
+      sudo dpkg -i MVS-2.1.2_x86_64_*.deb
     elif [ "$architecture" == "i386" ]; then
-      sudo dpkg -i MVS-2.1.2_i386_*
+      sudo dpkg -i MVS-2.1.2_i386_*.deb
     fi
   fi
 

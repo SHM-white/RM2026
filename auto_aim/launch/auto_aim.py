@@ -25,6 +25,18 @@ def generate_launch_description():
         namespace="camera1"
     )
 
+    serial_node = Node(
+        package="robot_serial",
+        executable="robot_serial_node",
+        output="screen",
+        emulate_tty=True,
+        # parameters=[yaml_path],
+        name="robot_serial_node",
+        respawn=True,
+        namespace="camera1"
+    )
+
+
     tracker_node = Node(
         package="marker_tracker",
         executable="marker_tracker_node",
@@ -37,6 +49,6 @@ def generate_launch_description():
     )
 
     launch_description = LaunchDescription(
-        [camera_node, detect_node, tracker_node]
+        [camera_node, serial_node, detect_node, tracker_node]
     )
     return launch_description
