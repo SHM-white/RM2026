@@ -8,6 +8,7 @@ from ament_index_python.packages import get_package_share_directory
 
 car_name = "quan_xiang"
 
+
 def generate_launch_description():
     camera_node = Node(
         package="camera_driver",
@@ -46,7 +47,16 @@ def generate_launch_description():
                 'config',
                 car_name,
                 'detector.yaml'
-            )
+            ),
+            {
+                "model_path":
+                    os.path.join(
+                        get_package_share_directory('marker_detector'),
+                        'buffer_detector',
+                        'model',
+                        'dafu.xml'
+                    )
+            }
         ],
         name="marker_detector_node",
         respawn=True,
