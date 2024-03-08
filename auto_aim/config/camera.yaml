@@ -1,0 +1,22 @@
+quan_xiang:
+  camera_driver_node:
+    ros__parameters:
+      camera_name: quan_xiang
+      camera_height: 400
+      camera_width: 1440
+      camera_exp: 2000.0
+      camera_gain: 15.0
+      camera_framerate: 200
+      camera_roi_offset_x: 0
+      camera_roi_offset_y: 340
+      camera_auto_exp: 0
+      camera_auto_maxexp: 4500
+      camera_auto_minexp: 100
+      camera_auto_gain: 0
+      camera_auto_maxgain: 17.0
+      camera_auto_mingain: 0.0
+      camera_auto_whitebalance: 0
+      camera_matrix: [1786.6204932764269, 0.0, 764.3366324099718, 0.0, 1765.1631435451384, 139.65365779182346, 0.0, 0.0, 1.0]
+      camera_distortion: [-0.068600685033652617, 0.15773195206675142, -0.0059665677987178279, 0.0040373695107341501, 0.0]
+      camera_rectification: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      camera_projection: [1773.255615234375, 0.0, 767.62356271712633, 0.0, 0.0, 1761.3531494140625, 138.15927355400163, 0.0, 0.0, 0.0, 1.0, 0.0]
