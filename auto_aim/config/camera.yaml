@@ -20,3 +20,25 @@ quan_xiang:
       camera_distortion: [-0.068600685033652617, 0.15773195206675142, -0.0059665677987178279, 0.0040373695107341501, 0.0]
       camera_rectification: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
       camera_projection: [1773.255615234375, 0.0, 767.62356271712633, 0.0, 0.0, 1761.3531494140625, 138.15927355400163, 0.0, 0.0, 0.0, 1.0, 0.0]
+sentry:
+  camera_driver_node:
+    ros__parameters:
+      camera_name: sentry
+      camera_height: 540
+      camera_width: 720
+      camera_exp: 1500.0
+      camera_gain: 15.0
+      camera_framerate: 200
+      camera_roi_offset_x: 0
+      camera_roi_offset_y: 0
+      camera_auto_exp: 0
+      camera_auto_maxexp: 4500
+      camera_auto_minexp: 100
+      camera_auto_gain: 0
+      camera_auto_maxgain: 17.0
+      camera_auto_mingain: 0.0
+      camera_auto_whitebalance: 0
+      camera_matrix: [1169.5748992325236, 0.0, 364.53376541762776, 0.0, 1153.4272975915339, 326.53231170787473, 0.0, 0.0, 1.0]
+      camera_distortion: [-0.11031096692512585, 0.47388953148122082, 0.0071490783094979218, 0.0025309876510483161, 0.0]
+      camera_rectification: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      camera_projection: [1161.5836181640625, 0.0, 364.90457654881538, 0.0, 0.0, 1141.0157470703125, 326.83984457524639, 0.0, 0.0, 0.0, 1.0, 0.0]
