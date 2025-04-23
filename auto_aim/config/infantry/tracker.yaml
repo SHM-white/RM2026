@@ -4,10 +4,10 @@
       fire_delay: 0
     camera:
       height_offset: 0.0
-      pitch_offset: 2.0
-      x_offset: 0.0
-      yaw_offset: -0.4
-      z_offset: 0.0
+      pitch_offset: -1.0
+      x_offset: 0.05
+      yaw_offset: 0.8
+      z_offset: 0.02
     kalman:
       Dt: 0.005
       Q_R: 1.0e-06

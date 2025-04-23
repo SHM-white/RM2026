@@ -49,7 +49,7 @@
       offset_W: 290
       width: 700
     if_get_angle: true
-    is_red: false
+    is_red: true
     qos_overrides:
       /parameter_events:
         publisher:

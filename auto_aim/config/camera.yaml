@@ -42,3 +42,25 @@ sentry:
       camera_distortion: [-0.11031096692512585, 0.47388953148122082, 0.0071490783094979218, 0.0025309876510483161, 0.0]
       camera_rectification: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
       camera_projection: [1161.5836181640625, 0.0, 364.90457654881538, 0.0, 0.0, 1141.0157470703125, 326.83984457524639, 0.0, 0.0, 0.0, 1.0, 0.0]
+infantry:
+  camera_driver_node:
+    ros__parameters:
+      camera_name: infantry
+      camera_height: 400
+      camera_width: 1440
+      camera_exp: 2000.0
+      camera_gain: 15.0
+      camera_framerate: 200
+      camera_roi_offset_x: 0
+      camera_roi_offset_y: 340
+      camera_auto_exp: 0
+      camera_auto_maxexp: 4500
+      camera_auto_minexp: 100
+      camera_auto_gain: 0
+      camera_auto_maxgain: 17.0
+      camera_auto_mingain: 0.0
+      camera_auto_whitebalance: 0
+      camera_matrix: [1836.5314323424514, 0.0, 709.42119778816755, 0.0, 1836.6201158414283, 193.78922319485542, 0.0, 0.0, 1.0]
+      camera_distortion: [-0.070710472812940503, 0.14375837101106564, -0.00052662668050778064, -0.0039747606782305038, 0.0]
+      camera_rectification: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+      camera_projection: [1822.3973376389372, 0.0, 705.89474904298459, 0.0, 0.0, 1835.4135320116211, 193.73786809395364, 0.0, 0.0, 0.0, 1.0, 0.0]
