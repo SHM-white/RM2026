@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.16)
+
+# Project name
+project(RM2026)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Set output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# Add subdirectories for each module
+add_subdirectory(auto_aim)
+add_subdirectory(hik_camera_driver_ros2/camera_driver)
+add_subdirectory(marker_detector)
+add_subdirectory(marker_tracker)
+add_subdirectory(robot_serial)
+
+# Include third-party libraries
+add_subdirectory(thirdparty/serialib)
