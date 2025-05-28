@@ -36,8 +36,8 @@ check_packages(){
     need_setup=1
   fi
 
-  echo "Checking Ros2 Humble"
-  if [ -d "/opt/ros/humble" ]; then
+  echo "Checking Ros2 rolling"
+  if [ -d "/opt/ros/rolling" ]; then
     echo "Found!"
     ros=1
   else
@@ -57,7 +57,7 @@ check_packages(){
   fi
 
   echo "Checking cv_bridge"
-  if [ -d "/opt/ros/humble/share/cv_bridge" ]; then
+  if [ -d "/opt/ros/rolling/share/cv_bridge" ]; then
     echo "Found!"
     cv_bridge=1
   else
@@ -128,7 +128,7 @@ install_package(){
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
     sudo apt update
     sudo apt upgrade
-    sudo apt install ros-humble-desktop -y
+    sudo apt install ros-rolling-desktop -y
     sudo apt install ros-dev-tools -y
   fi
 
@@ -156,11 +156,11 @@ install_package(){
   if [ $cv_bridge -eq 0 ]; then
     clear
     echo "Install cv_bridge"
-    git clone https://github.com/ros-perception/vision_opencv.git -b humble /tmp/rm/vision_opencv 
+    git clone https://github.com/ros-perception/vision_opencv.git -b rolling /tmp/rm/vision_opencv 
     sudo mv /tmp/rm/vision_opencv /usr/loc al/src
     cd /usr/local/src/vision_opencv/cv_bridge
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/humble ..
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/rolling ..
     sudo make install
   fi
 
