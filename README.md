@@ -4,7 +4,7 @@
 ```
 mkdir -p ./RM2024/src
 cd ./RM2024/src
-git clone --recursive git@github.com:nuaa-rm/RM2024.git .
+git clone --recursive https://github.com/SHM-white/RM2026.git .
 cd ..
 colcon build --parallel-workers 12
 
