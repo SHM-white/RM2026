@@ -1,0 +1,18 @@
+video_player_node:
+  ros__parameters:
+    # 视频文件目录
+    video_directory: "/home/shm-white/RM2026/videos"
+    
+    # 播放参数
+    framerate: 30.0
+    loop_videos: true
+    
+    # 输出图像参数
+    video_width: 640
+    video_height: 480
+    
+    # ROS参数
+    camera_frame_id: "camera"
+    
+    # 可选参数
+    # 支持的视频格式: .mp4, .avi, .mov, .mkv, .wmv, .flv, .webm, .m4v
